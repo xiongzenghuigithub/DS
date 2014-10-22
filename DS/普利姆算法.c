@@ -81,18 +81,20 @@ void prim(Graph *g, int *sum) {
     
     while (YES) {
         
-        int v = -1;
+        int v = -1;     //v保存每一次要并入的顶点
         
         for (int i = 0; i < n ; i++) {
-            if (used[i] == NO && (v == -1 || mincost[i] < mincost[v])) {
+            if (used[i] == NO && (v == -1 || mincost[i] < mincost[v])) {    //取最小(初始)权值的边
                 v = i;
             }
         }
         
+        //全部顶点并入完毕
         if (v == -1) {
             break;
         }
         
+        //还有未并入的顶点
         used[v] = YES;
         sum += mincost[v];
         
