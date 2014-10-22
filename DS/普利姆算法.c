@@ -63,7 +63,6 @@ void createGraph(Graph *g) {
 typedef enum {YES = 0, NO}BOOL ;
 void prim(Graph *g, int *sum) {
     
-    int cost[MAXSIZE][MAXSIZE];                      //cost[v1][v2]: 存放顶点v1到顶点v2的权值(不存在为最大值)
     int mincost[MAXSIZE];                            //从给定的初始顶点(v0)到其他各顶点的最小权值
     BOOL used[MAXSIZE];                              //标识顶点i是否已经被并入
     int n = g->vexnum;                               //总顶点数
@@ -99,7 +98,7 @@ void prim(Graph *g, int *sum) {
         sum += mincost[v];
         
         for (int i = 0; i < n; i++) {
-            mincost[i] = min(mincost[i], cost[v][i]);
+            mincost[i] = min(mincost[i], g->matrix[v][i]);
         }
     }
     
