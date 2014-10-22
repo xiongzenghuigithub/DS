@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9405F43219F76314005DFC27 /* 普利姆算法.c in Sources */ = {isa = PBXBuildFile; fileRef = 9405F43119F76314005DFC27 /* 普利姆算法.c */; };
-		940958BA19F5F15E00B8F63A /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 940958B919F5F15E00B8F63A /* main.c */; };
 		940958C119F5F16D00B8F63A /* ThreadTree.c in Sources */ = {isa = PBXBuildFile; fileRef = 940958C019F5F16D00B8F63A /* ThreadTree.c */; };
 		940958C319F615E600B8F63A /* 邻接矩阵.c in Sources */ = {isa = PBXBuildFile; fileRef = 940958C219F615E600B8F63A /* 邻接矩阵.c */; };
 		940958C519F628F600B8F63A /* Map2.c in Sources */ = {isa = PBXBuildFile; fileRef = 940958C419F628F600B8F63A /* Map2.c */; };
@@ -32,7 +31,6 @@
 /* Begin PBXFileReference section */
 		9405F43119F76314005DFC27 /* 普利姆算法.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "普利姆算法.c"; sourceTree = "<group>"; };
 		940958B619F5F15E00B8F63A /* DS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DS; sourceTree = BUILT_PRODUCTS_DIR; };
-		940958B919F5F15E00B8F63A /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		940958C019F5F16D00B8F63A /* ThreadTree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ThreadTree.c; sourceTree = "<group>"; };
 		940958C219F615E600B8F63A /* 邻接矩阵.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "邻接矩阵.c"; sourceTree = "<group>"; };
 		940958C419F628F600B8F63A /* Map2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Map2.c; sourceTree = "<group>"; };
@@ -71,7 +69,6 @@
 		940958B819F5F15E00B8F63A /* DS */ = {
 			isa = PBXGroup;
 			children = (
-				940958B919F5F15E00B8F63A /* main.c */,
 				940958C019F5F16D00B8F63A /* ThreadTree.c */,
 				940958C219F615E600B8F63A /* 邻接矩阵.c */,
 				940958C419F628F600B8F63A /* Map2.c */,
@@ -144,7 +141,6 @@
 				946E555E19F6418000B3945D /* Map3.c in Sources */,
 				940958C319F615E600B8F63A /* 邻接矩阵.c in Sources */,
 				946E556219F655DF00B3945D /* BiTree.c in Sources */,
-				940958BA19F5F15E00B8F63A /* main.c in Sources */,
 				940958C119F5F16D00B8F63A /* ThreadTree.c in Sources */,
 				940958C519F628F600B8F63A /* Map2.c in Sources */,
 			);

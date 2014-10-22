@@ -9,6 +9,7 @@
 
 #define MAXSIZE 100
 #define NOT_ARRIVE 65535
+#define min(x,y)((x>y)?x:y)
 
 typedef struct Graph{
     
@@ -20,18 +21,6 @@ typedef struct Graph{
 
 void createGraph(Graph *g);
 int getIndex(Graph *g, char data);
-
-/**
- *  从给定顶点开始构造最小生成树
- */
-void prim(Graph *g, char data);
-/**
- *  获取当前顶点到其他最小权值的顶点编号
- *
- *  @param vexNum : 图的总顶点数
- *  @lowCost[]    : 顶点到其他所有顶点的权值数组
- */
-//int getMinCostVexIndex(int vexNum, int lowCost[]);
 
 int getIndex(Graph *g, char data) {
     int i, idx = -1;
@@ -71,63 +60,53 @@ void createGraph(Graph *g) {
     }
 }
 
-
-void prim(Graph *g, char data) {
+typedef enum {YES = 0, NO}BOOL ;
+void prim(Graph *g, int *sum) {
     
+    int cost[MAXSIZE][MAXSIZE];                      //cost[v1][v2]: 存放顶点v1到顶点v2的权值(不存在为最大值)
+    int mincost[MAXSIZE];                            //从给定的初始顶点(v0)到其他各顶点的最小权值
+    BOOL used[MAXSIZE];                              //标识顶点i是否已经被并入
+    int n = g->vexnum;                               //总顶点数
     
-    /**
-     *      vexs[i] = j ==>> j号顶点到i号顶点的, 边
-     *      lowcost[i] = k ==>> j号顶点到i号顶点的, 权值
-     */
-    int arcArr[MAXSIZE];                           //边数组
-    int lowcost[MAXSIZE];                        //权值数组
-    
-    //1) 默认从第0号顶点开始遍历 (0号顶点到0号顶点的权值==0)
-    arcArr[0] = 0;
-    lowcost[0] = 0;
-    
-    //2) 计算0号顶点到其他所有顶点的权值数组
+    //1) 初始化2个数组
     int i;
-    for (i = 1; i < g->vexnum; i++) {           //i从1开始，因为默认从0号顶点开始遍历，所以避开自己到自己的情况
-        arcArr[i] = 0;
-        lowcost[i] = g->matrix[0][i];
+    for (i = 0; i <  n; i++) {
+        mincost[i] = NOT_ARRIVE;
+        used[i] = NO;
     }
     
-    //3)
-    for (i = 1; i < g->vexnum; i++) {           //循环全部顶点 (n个点有n-1条边，所以只需要循环n-1次)
+    mincost[0] = 0;                                 //从v0到v0的最小权值为0
+    sum = 0;
+
+    
+    while (YES) {
         
-        int minCost = NOT_ARRIVE;
-        int j = 1;                              //排除0号顶点
-        int k = 0;                              //保存权值最小的权值数组元素下标值
+        int v = -1;
         
-        while (j < g->vexnum) {
-            if (lowcost[j] != 0 && lowcost[j] < minCost) {  //如果权值不为0且权值小于min
-                
-                minCost = lowcost[j];           //保存最小权值
-                k = j;                          //保存最小权值的下标
+        for (int i = 0; i < n ; i++) {
+            if (used[i] == NO && (v == -1 || mincost[i] < mincost[v])) {
+                v = i;
             }
-            j++;
         }
         
-        //打印当前顶点边中权值最小的边
-        printf("当前权值最小的边是: %d号顶点 --> %d号顶点\n", arcArr[k], k); //vexs[i]=j ==> 顶点j到顶点i
+        if (v == -1) {
+            break;
+        }
         
-        //将选中的顶点k的权值置0, 表示已经加入到最小生成树
-        lowcost[k] = 0;                             //标志顶点k已经访问
+        used[v] = YES;
+        sum += mincost[v];
         
-        for (j = 1; j < g->vexnum; j++) {       //循环全部顶点 (n个点有n-1条边，所以只需要循环n-1次)
-            
-            //如果下标为k顶点各边权值小于此前这些顶点未被加入生成树权值
-            if (lowcost[j] != 0 && g->matrix[k][j] < lowcost[j]) {  //lowCost[j] --> vexs[j] --> 其他所有顶点到顶点j的边权值
-                lowcost[j] = g->matrix[k][j];       //将较小的权值存入lowcost相应位置
-                arcArr[j] = k;                        //将(顶点k-->顶点j)边 保存到边数组
-            }
+        for (int i = 0; i < n; i++) {
+            mincost[i] = min(mincost[i], cost[v][i]);
         }
     }
     
 }
 
 
+int main() {
+    return 1;
+}
 
 
 
