@@ -105,6 +105,64 @@ void prim(Graph *g, int *sum) {
 }
 
 
+void prim2(Graph *g, int * sum){
+    
+	//1. 定义2个数组
+	int mincost[MAXSIZE];		//保存到定点i的最小权值
+	BOOL used[MAXSIZE];			//标识定点i是否已经被并入生成树
+    
+	int num = g->vexnum;		//总得顶点数
+    
+	//2. 先将顶点0并入生成树
+	used[0] = YES;
+	mincost[0] = 0;
+	sum = 0;
+    
+	//3. 初始化顶点0到其他所有顶点的权值
+	for (int i = 1; i < num; ++i)
+	{
+		mincost[i] = g->matrix[0][i];
+		used[i] = NO;
+	}
+    
+	//4. 不断的并入剩下的 n-1 个顶点
+	while (YES) {
+        
+		//4.1) 找出顶点0到其他顶点最小边权值的顶点, 再并入
+		int min = NOT_ARRIVE;
+		int v = -1;
+		for (int i = 1; i < num; ++i)
+		{
+			if (used[i] == NO && mincost[i] < min)
+			{
+				min = mincost[i];
+				v = i;
+			}
+		}
+        
+		//4.2) 如果顶点已经全部并入完毕
+		if (v == -1)
+		{
+			break;
+		}
+        
+		//4.3) 并入顶点V
+		used[v] = YES;
+		mincost[v] = min;
+        
+		//4.4) 修正mincost[v]是否是最小权值
+		//查看生成树中刚刚并入的顶点v, 到剩下的顶点权值是否小于初始化时给所有顶点初始的权值(顶点0到其他所有顶点的权值)
+		for (int i = 1; i < num; ++i)
+		{
+			if (used[i] == NO && g->matrix[v][i] < mincost[i])
+			{
+				mincost[i] = g->matrix[v][i];
+			}
+		}
+	}
+}
+
+
 int main() {
     return 1;
 }
