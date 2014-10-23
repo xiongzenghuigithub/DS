@@ -1,7 +1,7 @@
 /**
  *      最小生成树--克鲁斯卡尔算法
  *
- *			1. 借助 并查集 不断的合并边
+ *			1. 借助 并查集 判断当前要加入的边 是否会产生回路
  */
 
 #include <stdio.h>
@@ -11,6 +11,50 @@
 #define min(x ,y) ((x > y)?x:y)
 
 typedef enum {NO = 0, YES} BOOL;
+
+
+//并查集数据结构
+typedef struct UnionSet{
+    
+    int parant[MAXSIZE];
+    int rank[MAXSIZE];
+    
+}UnionSet;
+
+void InitUnionSet(UnionSet * u);
+int Find(UnionSet * u, int x);
+void Union(UnionSet * u, int x, int y);
+
+void initUnionSet(UnionSet * u) {
+    for (int i = 0; i < MAXSIZE; i++) {
+        u->parant[i] = i;   //把自己作为自己的根节点
+        u->rank[i] = 0;
+    }
+}
+
+int Find(UnionSet * u, int x) {
+    if (u->parant[x] != x) {
+        u->parant[x] = Find(u, u->parant[x]);
+    }
+    return u->parant[x];
+}
+
+void Union(UnionSet * u, int x, int y) {
+    x = Find(u, x);
+    y = Find(u, y);
+    
+    if (u->rank[x] < u->rank[y]) {
+        u->parant[x] = y;
+        
+    }else {
+        
+        u->parant[y] = x;
+        if (u->rank[x] == u->rank[y]) {
+            u->rank[x]++;
+        }
+    }
+}
+
 
 //图
 typedef struct Graph {
@@ -69,8 +113,24 @@ void kruskal(Graph *g) {
 	//3. 对边集数组排序
 	sort(edge, edgenum);
 
-	
+	//4. 借助并查集结构
+    UnionSet set;
+    InitUnionSet(&set);
 
+    for (int i = 0; i < edgenum; i++) {
+        
+        //查找边集2个顶点各自的父顶点
+        int n = Find(&set, edge[i].beginVex);
+        int m = Find(&set, edge[i].endVex);
+        
+        //各自的跟节点不在同一个集合(树)中 ==> 加入的边不可能形成回路
+        if (n != m) {
+            
+            //并入顶点
+            set.parant[n] = m;
+        }
+    }
+    
 
 }
 
