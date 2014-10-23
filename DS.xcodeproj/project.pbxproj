@@ -14,6 +14,9 @@
 		946E555E19F6418000B3945D /* Map3.c in Sources */ = {isa = PBXBuildFile; fileRef = 946E555D19F6418000B3945D /* Map3.c */; };
 		946E556019F64A0400B3945D /* KMP.c in Sources */ = {isa = PBXBuildFile; fileRef = 946E555F19F64A0400B3945D /* KMP.c */; };
 		946E556219F655DF00B3945D /* BiTree.c in Sources */ = {isa = PBXBuildFile; fileRef = 946E556119F655DF00B3945D /* BiTree.c */; };
+		94E771B519F8990300F8C7C8 /* 克鲁斯卡尔算法.c in Sources */ = {isa = PBXBuildFile; fileRef = 94E771B419F8990300F8C7C8 /* 克鲁斯卡尔算法.c */; };
+		94E771B819F8B1D700F8C7C8 /* 并查集.c in Sources */ = {isa = PBXBuildFile; fileRef = 94E771B619F8B1D700F8C7C8 /* 并查集.c */; };
+		94E771B919F8B1D700F8C7C8 /* 链式线性结构.c in Sources */ = {isa = PBXBuildFile; fileRef = 94E771B719F8B1D700F8C7C8 /* 链式线性结构.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +40,9 @@
 		946E555D19F6418000B3945D /* Map3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Map3.c; sourceTree = "<group>"; };
 		946E555F19F64A0400B3945D /* KMP.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = KMP.c; sourceTree = "<group>"; };
 		946E556119F655DF00B3945D /* BiTree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BiTree.c; sourceTree = "<group>"; };
+		94E771B419F8990300F8C7C8 /* 克鲁斯卡尔算法.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "克鲁斯卡尔算法.c"; sourceTree = "<group>"; };
+		94E771B619F8B1D700F8C7C8 /* 并查集.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "并查集.c"; sourceTree = "<group>"; };
+		94E771B719F8B1D700F8C7C8 /* 链式线性结构.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "链式线性结构.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +75,8 @@
 		940958B819F5F15E00B8F63A /* DS */ = {
 			isa = PBXGroup;
 			children = (
+				94E771B619F8B1D700F8C7C8 /* 并查集.c */,
+				94E771B719F8B1D700F8C7C8 /* 链式线性结构.c */,
 				940958C019F5F16D00B8F63A /* ThreadTree.c */,
 				940958C219F615E600B8F63A /* 邻接矩阵.c */,
 				940958C419F628F600B8F63A /* Map2.c */,
@@ -76,6 +84,7 @@
 				946E555F19F64A0400B3945D /* KMP.c */,
 				946E556119F655DF00B3945D /* BiTree.c */,
 				9405F43119F76314005DFC27 /* 普利姆算法.c */,
+				94E771B419F8990300F8C7C8 /* 克鲁斯卡尔算法.c */,
 			);
 			path = DS;
 			sourceTree = "<group>";
@@ -139,9 +148,12 @@
 				946E556019F64A0400B3945D /* KMP.c in Sources */,
 				9405F43219F76314005DFC27 /* 普利姆算法.c in Sources */,
 				946E555E19F6418000B3945D /* Map3.c in Sources */,
+				94E771B919F8B1D700F8C7C8 /* 链式线性结构.c in Sources */,
 				940958C319F615E600B8F63A /* 邻接矩阵.c in Sources */,
 				946E556219F655DF00B3945D /* BiTree.c in Sources */,
 				940958C119F5F16D00B8F63A /* ThreadTree.c in Sources */,
+				94E771B819F8B1D700F8C7C8 /* 并查集.c in Sources */,
+				94E771B519F8990300F8C7C8 /* 克鲁斯卡尔算法.c in Sources */,
 				940958C519F628F600B8F63A /* Map2.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
