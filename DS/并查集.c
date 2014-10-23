@@ -1,5 +1,9 @@
 /**
  *		并查集(union_set) -- 将2个有序集合进行快速合并, 去掉重复元素
+ *
+ *        1. 每一个集合都有一个根元素
+ *        2. 每一个集合元素, 可能又是另一个集合的根元素
+ *        3. 每一个集合的根元素, 都有对应的集合深度
  */
 
  #include <stdio.h>
@@ -7,8 +11,8 @@
 
  //并查集结构
  #define MAXSIZE 100			// 集合最大元素个数
- int parant[MAXSIZE];			// parant[x] 表示 元素x 的根元素
- int rank[MAXSIZE];				// rank[x] 表示 以元素x 为根元素的集合 的深度
+ int parant[MAXSIZE];			// 根节点数组: parant[x] 表示 元素x 的根元素
+ int rank[MAXSIZE];				// 深度数组:  rank[x] 表示 以元素x 为根元素的集合 的深度
 
 
  /**
@@ -40,24 +44,27 @@
   */
   void union_set(int x, int y) {
 
-  		//1. 查找扫2个元素所在集合的根元素
+  		  //1. 查找扫2个元素所在集合的根元素
   	    x = findParant(x);
   	    y = findParant(y);
 
-  	    //2. 将深度低得集合 插入到 深度高的集合的子集合
-  	    if (rank[x] < rank[y])
-  	    {
-  	    	parant[x] = y;		//把y作为x集合的根节点
-  	    }else {
-  	    	//有大于和等于的情况
-  	    	parant[y] = x;		//x集合深度 >或= y集合深度, 都把x作为y的根元素
+  	    if ( x != y) //(x元素所在集合的根元素  != y元素所在集合的根元素 ) --> x元素和y元素在不同的集合中
+        {
+          //2. 将深度低得集合 插入到 深度高的集合的子集合
+          if (rank[x] < rank[y])
+          {
+            parant[x] = y;    //把y作为x集合的根节点
 
-  	    	//x集合深度 == y集合深度 ( 1)把x作为y的根元素 2)x深要 + 1 )
-  	    	if (rank[x] == rank[y])
-  	    	{
-  	    		rank[x]++;
-  	    	}
-  	    }
+          }else {
+            //有大于和等于的情况
+            parant[y] = x;    //x集合深度 >或= y集合深度, 都把x作为y的根元素
+
+            //x集合深度 == y集合深度 ( 1)把x作为y的根元素 2)x深要 + 1 )
+            if (rank[x] == rank[y])
+            {
+              rank[x]++;
+            }
+        }
   }
 
 
